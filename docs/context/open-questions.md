@@ -1,7 +1,7 @@
 # Open Questions
 
 Product behavior for the first RPGLE pilot is defined in PRD v0.3 and
-`specs/001-rpgle-skill-pilot/spec.md`. The questions below block technical planning
+`docs/03-spec/rpgle-skill-pilot-spec.md`. The questions below block technical planning
 or implementation, not product discovery. Do not turn an unresolved option into an
 implicit architecture decision.
 

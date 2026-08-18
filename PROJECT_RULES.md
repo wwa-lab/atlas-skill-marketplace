@@ -7,7 +7,7 @@ this file remains concise and enforceable.
 
 Use this precedence when documents disagree:
 
-1. Approved feature spec under `specs/` for the active change
+1. Accepted specification under `docs/03-spec/` for the active slice
 2. Approved product decisions and PRD in `docs/product/`
 3. ADRs in `docs/architecture/decisions/`
 4. Architecture and standards documents
@@ -16,6 +16,31 @@ Use this precedence when documents disagree:
 The prototype demonstrates visual direction and partial Discover behavior. It
 does not override the PRD, define backend behavior, or move Day 2 features into
 MVP.
+
+## SDD Workflow Gate
+
+Atlas operates in the profile defined by `docs/00-context/sdd-profile.md`.
+Non-trivial or user-facing changes must travel through the `docs/01`–`docs/06`
+SDD chain before implementation. The slice must have accepted requirements,
+user stories, specification, architecture, design, tasks, and applicable
+contracts, checklists, reviews, and traceability evidence.
+
+The project-local SDD skills under `.agents/skills/` are an exact mirror of the
+authoritative `Agentic-SDLC-Control-Tower/.claude/skills/` directory. Use only
+the skills listed in `docs/00-context/agentic-sdlc-registry.md`, and use the
+profile plus `docs/SDD-BOOTSTRAP.md` to route them. Do not introduce a second
+feature, requirements, design, task, or workflow-skill family.
+
+For a full SDD pass, apply the available stage skills in document order and
+report the exact skill chain, ADR result, and `review-doc-quality` result. Do
+not name or require orchestration, profile-manager, freshness, manifest, or
+other skills that are absent from the authoritative source.
+
+If implementation already exists without matching SDD artifacts, backfill the
+slice and mark the documents `Backfilled`; never imply that they preceded the
+implementation. Code, tests, contracts, and user-facing documentation must be
+traceable to the slice. Project rules and SDD artifacts are English-only; do not
+create bilingual SDD companions unless explicitly requested.
 
 ## Product Discovery Protocol: Grill Mode
 
@@ -58,7 +83,7 @@ Enter Grill Mode when the user says or clearly means any of the following:
    second-order consequences.
 8. **Do not answer your own question.** A response frame or example shape is
    allowed, but do not steer the user into accepting an invented product decision.
-9. **Stay read-only.** Do not edit files, create specs/tasks/plans, scaffold code,
+9. **Stay read-only.** Do not edit files, create SDD artifacts, scaffold code,
    or start implementation while Grill Mode is active.
 10. **Recognize questions conversation cannot settle.** If a decision depends on
     seeing or using an interaction, mark it for a throwaway prototype or test
@@ -83,7 +108,7 @@ or when the user says to stop. Then provide a final decision summary containing
 resolved decisions, deferred items, remaining risks, and evidence still needed.
 
 Do not automatically turn the summary into project artifacts. Ask for explicit
-confirmation before handing it to Spec Kit, updating the PRD, writing an ADR, or
+confirmation before handing it to the SDD workflow, updating the PRD, writing an ADR, or
 starting implementation. Once confirmed, use the same conversation as source
 context rather than making the user repeat the answers.
 
@@ -91,7 +116,7 @@ context rather than making the user repeat the answers.
 
 A change is non-trivial if it alters user-visible behavior, data, an API or
 protocol, a security boundary, dependencies, deployment, or architecture. Such
-changes require a Spec Kit feature directory before implementation.
+changes require a complete SDD slice before implementation.
 
 Copy edits, comments, formatting, and metadata-only cleanup may proceed directly
 when scope and behavior do not change.
@@ -157,7 +182,7 @@ and:
 - Render metadata as untrusted content; sanitize HTML/Markdown and prevent XSS.
 
 Security-sensitive implementation must include abuse cases and failure-path
-tests in its feature spec and plan.
+tests in its specification, architecture, design, and tasks.
 
 ## Coding And Contract Rules
 

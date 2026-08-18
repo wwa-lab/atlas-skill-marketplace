@@ -8,12 +8,14 @@ Keep it short; detailed and durable rules live in the linked documents.
 Before non-trivial work, read in this order:
 
 1. `PROJECT_RULES.md`
-2. `.specify/memory/constitution.md`
-3. The relevant feature directory under `specs/`
-4. `docs/context/product-boundaries.md` and `docs/context/glossary.md`
-5. `docs/domain/README.md` when changing entities or lifecycle states
-6. The standards for the affected runtime under `docs/standards/`
-7. Relevant ADRs under `docs/architecture/decisions/`
+2. `docs/00-context/constitution.md`
+3. `docs/00-context/sdd-profile.md` and `docs/SDD-BOOTSTRAP.md`
+4. Relevant slice documents under `docs/01-requirements/` through
+   `docs/06-tasks/`
+5. `docs/context/product-boundaries.md` and `docs/context/glossary.md`
+6. `docs/domain/README.md` when changing entities or lifecycle states
+7. The standards for the affected runtime under `docs/standards/`
+8. Relevant ADRs under `docs/architecture/decisions/`
 
 Read `docs/product/Atlas_Marketplace_PRD_v0.3.md` when a change affects product
 scope or acceptance criteria. Treat the HTML prototype as a visual reference,
@@ -34,19 +36,40 @@ During Grill Mode:
   constraints;
 - remain read-only and do not create a plan, spec, tasks, or implementation;
 - stop only when branches are resolved/deferred or the user asks to stop;
-- ask before converting the outcome into Spec Kit artifacts.
+- ask before converting the outcome into SDD artifacts.
 
 ## Change Workflow
 
-- Non-trivial or user-visible changes use Spec Kit under `.specify/` and
-  `specs/`. The feature spec is the single source of change intent.
+- Non-trivial or user-visible changes use the standalone SDD profile at
+  `docs/00-context/sdd-profile.md` and the document chain under `docs/01`–`docs/06`.
+- The accepted specification under `docs/03-spec/` is the source of change
+  behavior and scope.
+- Before implementation, the applicable slice must have accepted requirements,
+  user stories, specification, architecture, design, tasks, traceability, and
+  required reviews defined by the profile.
+- `.agents/skills/` is the only project-local development skill source.
 - Architecture, security-boundary, data-ownership, protocol, or stack decisions
   require an ADR before implementation.
 - Trivial copy, comment, formatting, and metadata fixes may be made directly
   when they do not alter behavior, scope, contracts, or data.
-- Do not create a second requirements/design/task chain beside Spec Kit.
+- Do not create a second requirements/design/task chain beside the SDD profile.
 - Record unresolved choices in `docs/context/open-questions.md`; do not present
   them as decided architecture.
+
+## SDD Workflow Gate
+
+- Use only the project-local skills mirrored from the authoritative Control
+  Tower `.claude/skills/` directory and listed in
+  `docs/00-context/agentic-sdlc-registry.md`.
+- Route each SDD stage directly to its matching skill; there is no separate
+  project-local orchestration, profile-manager, freshness, or manifest skill.
+- Use `review-doc-quality` before implementation, and use
+  `review-code-against-design` plus `architecture-review` after implementation
+  when their trigger conditions apply.
+- Project rules and SDD artifacts are English-only. Product documentation may
+  remain Chinese when appropriate.
+- Existing-code claims in generated artifacts must be verified or explicitly
+  marked `[UNVERIFIED]`, `[ASSUMPTION]`, or `[USER-STATED]`.
 
 ## Product And Architecture Boundaries
 
@@ -68,8 +91,14 @@ During Grill Mode:
 - `clients/atlas-installer/` — trusted local install/update/rollback client
 - `packages/contracts/` — versioned schemas and cross-boundary protocols
 - `packages/host-adapters/` — host adapter interfaces and implementations
-- `specs/` — one Spec Kit directory per non-trivial feature/change
-- `docs/` — product source, durable context, architecture, ADRs, standards
+- `docs/00-context/` — SDD profile, constitution, traceability, and handoff context
+- `docs/01-requirements/` — stable slice requirements
+- `docs/02-user-stories/` — actors, stories, and acceptance criteria
+- `docs/03-spec/` — behavior specifications and change scope
+- `docs/04-architecture/` — slice architecture, data flow, and data model
+- `docs/05-design/` — detailed design and cross-boundary contracts
+- `docs/06-tasks/` — implementation and verification task breakdowns
+- `docs/architecture/` — durable system/security architecture and ADRs
 - `tests/contract/` — cross-boundary contract verification
 - `tests/e2e/` — critical user journeys spanning runtimes
 - `infra/` — local/deployment infrastructure after an ADR approves it
@@ -108,17 +137,23 @@ Application build commands are intentionally not invented before stack ADRs and
 runtime scaffolding exist. Until then, use:
 
 ```sh
-git diff --check
-if rg -n '\[(PROJECT_NAME|PRINCIPLE_[0-9]+_[A-Z_]+|SECTION_[0-9]+_[A-Z_]+|GOVERNANCE_RULES|CONSTITUTION_VERSION|RATIFICATION_DATE|LAST_AMENDED_DATE)\]' .specify/memory/constitution.md; then
+# Mirrored upstream Skills are checked by verify-sdd-skills.sh and retain
+# upstream formatting; apply whitespace checks to Atlas-owned files here.
+git diff --check -- . ':(exclude).agents/skills/**'
+if rg -n '\[(PROJECT_NAME|PRINCIPLE_[0-9]+_[A-Z_]+|SECTION_[0-9]+_[A-Z_]+|GOVERNANCE_RULES|CONSTITUTION_VERSION|RATIFICATION_DATE|LAST_AMENDED_DATE)\]' docs/00-context/constitution.md; then
   echo "unresolved constitution placeholders found" >&2
   exit 1
 fi
 ```
 
+When `.agents/skills/` or `docs/00-context/sdd-skills.lock` changes, also run:
+
+```sh
+./scripts/verify-sdd-skills.sh
+```
+
 When runtimes are scaffolded, update this section and the relevant standards in
 the same change with exact install, lint, typecheck, test, build, and E2E commands.
 
-<!-- SPECKIT START -->
-For an active Spec Kit feature, the feature plan supplies its concrete technology,
-source layout, commands, and verification requirements.
-<!-- SPECKIT END -->
+For an active SDD slice, its accepted architecture, design, and tasks supply the
+concrete technology, source layout, commands, and verification requirements.

@@ -3,7 +3,7 @@
 - **Status**: Proposed
 - **Date**: YYYY-MM-DD
 - **Owners**: Team or role
-- **Related Spec**: `specs/NNN-feature/`
+- **Related Spec**: `docs/03-spec/{slice}-spec.md`
 
 ## Context
 
