@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: ${ATLAS_DB_URL}
+    username: ${ATLAS_DB_USERNAME}
+    password: ${ATLAS_DB_PASSWORD}
+    driver-class-name: oracle.jdbc.OracleDriver
+  jpa:
+    database-platform: org.hibernate.dialect.OracleDialect
+  flyway:
+    locations: classpath:db/migration
+    placeholders:
+      bigint_type: NUMBER(19)
+atlas:
+  local-fixtures-enabled: false

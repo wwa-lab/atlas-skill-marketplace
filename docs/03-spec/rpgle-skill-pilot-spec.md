@@ -2,7 +2,7 @@
 
 **Slice**: `rpgle-skill-pilot`
 **Created**: 2026-08-15
-**Status**: Draft
+**Status**: Accepted for architecture (2026-08-18)
 **Migrated to SDD chain**: 2026-08-18
 **Input**: Deliver the first end-to-end Atlas pilot in which an employee can
 discover, evaluate, install, invoke, update, roll back, and give feedback on an
@@ -516,24 +516,29 @@ Project files remain intact.
 
 ## Open Questions
 
-These choices are deferred to research, Contract, or ADR work before implementation;
-they do not change the user outcomes and acceptance behavior above:
+These choices are assigned to research, Contract, or ADR work. ADR-0004 resolves
+the Web/API/database stack. The remaining choices block only the tasks that cross
+their affected trust boundary; they do not change the user outcomes above:
 
-- **OQ-001**: What officially supported VS Code GitHub Copilot Chat Skill directory,
-  refresh/loading behavior, and explicit invocation syntax satisfy FR-013/FR-014?
-- **OQ-002**: Should the trusted Windows component be a CLI, service, VS Code
-  extension, or constrained combination?
-- **OQ-003**: Which browser-to-local discovery, consent, resume, and reconciliation
-  protocol satisfies CCR-004 without arbitrary command execution?
-- **OQ-004**: Which GitHub Enterprise and company SSO mechanisms provide per-request
+- **OQ-001 (Resolved)**: ADR-0004 selects the Web/API stack, relational profiles,
+  and initial deployment shape.
+- **OQ-002**: Which GitHub Enterprise and company SSO mechanisms provide per-request
   Repository authorization and Owner Write/Maintain verification?
-- **OQ-005**: Who builds and stores Distribution Artifacts, which integrity mechanism
+- **OQ-003**: What officially supported VS Code GitHub Copilot Chat Skill directory,
+  refresh/loading behavior, and explicit invocation syntax satisfy FR-013/FR-014?
+- **OQ-004**: Should the trusted Windows component be a CLI, service, VS Code
+  extension, or constrained combination?
+- **OQ-005**: Which browser-to-local discovery, consent, resume, and reconciliation
+  protocol satisfies CCR-004 without arbitrary command execution?
+- **OQ-006**: Who builds and stores Distribution Artifacts, which integrity mechanism
   is required, and how are compromised releases revoked?
-- **OQ-006**: What standard RPGLE program set, dependency truth set, and scoring rule
+- **OQ-007**: What standard RPGLE program set, dependency truth set, and scoring rule
   define certification and a valid pilot report?
-- **OQ-007**: How are duplicate/non-independent missed-dependency reports detected
+- **OQ-008**: How are duplicate/non-independent missed-dependency reports detected
   before counting toward the threshold of ten?
-- **OQ-008**: What signed, compatible, recoverable mechanism updates the local
+- **OQ-009**: How are Restricted/Hidden Metadata indexing, caching, and direct URLs
+  isolated so derived surfaces cannot leak repository-protected information?
+- **OQ-010**: What signed, compatible, recoverable mechanism updates the local
   component after user confirmation?
 
 The working records for these questions live in

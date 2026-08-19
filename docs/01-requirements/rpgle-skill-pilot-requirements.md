@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft — migrated from the original Atlas feature specification on 2026-08-18.
+Accepted for architecture on 2026-08-18.
 
 ## Context
 
@@ -75,9 +75,9 @@ upstream traceability without duplicating their full normative text.
 
 ## Open Questions
 
-The technical decisions in `docs/context/open-questions.md` remain unresolved.
-They block architecture, design, and implementation, but do not reopen the user
-outcomes and product constraints above.
+Unresolved technical decisions in `docs/context/open-questions.md` are explicit
+adapter or evidence blockers. ADR-0004 resolves the Web/API stack and database
+profiles. Remaining decisions do not reopen the user outcomes above.
 
 ## Source Documents
 

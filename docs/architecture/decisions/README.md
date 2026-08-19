@@ -17,3 +17,5 @@ Initial ADR candidates are listed in `docs/context/open-questions.md`.
   (`Superseded by ADR-0003`)
 - ADR-0003 — Use Control Tower as the authoritative SDD skill source
   (`Accepted`)
+- ADR-0004 — Adopt Java, Spring Boot, Vue, and relational persistence
+  (`Accepted`)

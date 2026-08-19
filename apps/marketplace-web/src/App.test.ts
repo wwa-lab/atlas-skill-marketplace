@@ -1,0 +1,2 @@
+import { render,screen } from '@testing-library/vue';import { createRouter,createMemoryHistory } from 'vue-router';import App from './App.vue'
+test('renders primary navigation',async()=>{const router=createRouter({history:createMemoryHistory(),routes:[{path:'/',component:{template:'<div>Home</div>'}}]});router.push('/');await router.isReady();render(App,{global:{plugins:[router]}});expect(screen.getByRole('navigation',{name:'Primary'})).toBeTruthy()})

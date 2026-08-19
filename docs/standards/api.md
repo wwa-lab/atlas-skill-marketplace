@@ -1,6 +1,7 @@
 # Registry API Standard
 
-This standard remains framework-neutral until stack and deployment ADRs exist.
+ADR-0004 selects Java 21, Spring Boot, Maven, REST/OpenAPI, Spring Data JPA,
+Flyway, H2 for local development, and Oracle for dev.
 
 ## Layering
 
@@ -47,5 +48,7 @@ transport/API -> application use cases -> domain -> ports
 
 ## Verification Baseline
 
-When scaffolding exists, document exact format, lint, typecheck, unit, integration,
-contract, migration, security, and build commands here.
+TASK-001 and TASK-006 must add exact Maven format, static-analysis, unit,
+integration, contract, migration, security, and build commands here after the
+wrapper and plugins exist. Oracle compatibility requires the same migration and
+persistence contract suite used for H2; H2 success alone is not sufficient.

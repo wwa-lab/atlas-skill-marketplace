@@ -9,7 +9,7 @@ implicit architecture decision.
 
 | ID | Decision / Evidence Needed | Why It Blocks Work | Expected Record |
 |---|---|---|---|
-| OQ-001 | Web/API stack and deployment topology | Determines runtime scaffolding and operations | ADR |
+| OQ-001 | Resolved by ADR-0004: Java 21/Spring Boot API, Vue 3 web, H2 local, Oracle dev, separate web/API deployables | Runtime scaffolding and persistence compatibility | ADR-0004 (Accepted) |
 | OQ-002 | GitHub Enterprise type, API surface, and company SSO mapping | Determines login, Repository permissions, and Owner verification | ADR |
 | OQ-003 | Officially supported VS Code GitHub Copilot Chat Skill root, loading/refresh behavior, precedence, and explicit invocation syntax | File copy and Copilot CLI documentation alone cannot prove pilot Host success | Research + host contract |
 | OQ-004 | Trusted Windows component form: CLI, service, VS Code extension, or constrained combination | Determines consent, update, filesystem, and deployment boundaries | ADR |

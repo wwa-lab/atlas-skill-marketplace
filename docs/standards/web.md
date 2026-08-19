@@ -1,6 +1,7 @@
 # Marketplace Web Standard
 
-This standard remains framework-neutral until an ADR selects the web stack.
+ADR-0004 selects Vue 3, TypeScript, Vite, Vue Router, Pinia, Node.js 22 LTS, and
+pnpm through Corepack with a committed lockfile.
 
 ## Boundaries
 
@@ -42,5 +43,6 @@ behavior as production code.
 
 ## Verification Baseline
 
-When scaffolding exists, document exact format, lint, typecheck, unit/component,
-accessibility, build, and E2E commands here.
+TASK-001 and TASK-006 must add the exact pnpm format, lint, typecheck,
+unit/component, accessibility, build, and E2E commands here after the scripts
+exist. Do not claim planned commands have run before scaffolding exists.

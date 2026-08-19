@@ -7,6 +7,9 @@
 
 # Dependencies and virtual environments
 node_modules/
+.pnpm-store/
+target/
+*.tsbuildinfo
 .venv/
 venv/
 
@@ -32,6 +35,8 @@ staging/
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
+*.mv.db
+*.trace.db
 
 # Editors and operating systems
 .DS_Store

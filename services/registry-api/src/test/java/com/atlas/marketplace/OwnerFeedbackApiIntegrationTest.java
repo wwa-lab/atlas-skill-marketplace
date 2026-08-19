@@ -1,0 +1,8 @@
+package com.atlas.marketplace;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import org.junit.jupiter.api.Test;import org.springframework.beans.factory.annotation.Autowired;import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;import org.springframework.boot.test.context.SpringBootTest;import org.springframework.http.MediaType;import org.springframework.test.context.ActiveProfiles;import org.springframework.test.web.servlet.MockMvc;
+@SpringBootTest @AutoConfigureMockMvc @ActiveProfiles("test") class OwnerFeedbackApiIntegrationTest{
+ @Autowired MockMvc mvc;
+ @Test void registrationRemainsPendingExternalValidation() throws Exception{mvc.perform(post("/api/v1/registrations").with(httpBasic("atlas-local","local-only")).contentType(MediaType.APPLICATION_JSON).content("{\"repositoryRef\":\"github.example/atlas/rpgle\",\"ownerRef\":\"team:atlas\",\"primaryMaintainerRef\":\"user:owner\"}")).andExpect(status().isOk()).andExpect(jsonPath("$.state").value("PENDING_EXTERNAL_VALIDATION"));}
+ @Test void feedbackRejectsUnknownUploadField() throws Exception{mvc.perform(post("/api/v1/skills/74b1504c-7ec3-4ec0-a90a-2a8e9efdc224/feedback").with(httpBasic("atlas-local","local-only")).contentType(MediaType.APPLICATION_JSON).content("{\"skillVersionId\":\"9efc78a7-0c99-481e-b254-f084717156a1\",\"type\":\"MISSED_DEPENDENCY\",\"comment\":\"Missing PAYR001\",\"sourceUpload\":\"secret\"}")).andExpect(status().isBadRequest());}
+}

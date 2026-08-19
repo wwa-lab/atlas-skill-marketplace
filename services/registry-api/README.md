@@ -1,7 +1,8 @@
 # Registry API
 
-Reserved for registry metadata, publication, GitHub sync, installation records,
-feedback, audit, and lifecycle orchestration.
+Spring Boot Registry API for catalog, local lifecycle orchestration, owner
+registration, feedback, audit-safe errors, and relational persistence.
 
-No framework or persistence technology is selected. Scaffold this directory only
-after the relevant ADRs and feature plan. Follow `docs/standards/api.md`.
+Use Zulu JDK 21.0.8. The `local` profile uses H2 and deterministic adapters; the
+`dev` profile uses Oracle and denies all business endpoints until the enterprise
+SSO/GitHub decision is implemented. See the root `README.md`.

@@ -2,7 +2,7 @@
 
 ## Status
 
-Draft — migrated from the original Atlas feature specification on 2026-08-18.
+Accepted for specification on 2026-08-18.
 
 ## Actors
 
